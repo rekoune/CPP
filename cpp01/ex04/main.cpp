@@ -1,6 +1,6 @@
 # include "main.hpp"
 
-void    replace(std::string& text, std::string& target, std::string& replacement){
+void    replace(std::string& text, std::string target, std::string replacement){
     size_t position;
 
     position = text.find(target);
@@ -12,22 +12,31 @@ void    replace(std::string& text, std::string& target, std::string& replacement
 }
 
 void readFile(char **& avRef, std::ifstream & inFile){
-    std::string line(avRef[1]);
-    std::ofstream outFile(line.append(".replace"));
+    std::string fileContent(avRef[1]);
+    std::ostringstream buffer;
+    std::ofstream outFile(fileContent.append(".replace"));
+
+    if (!outFile){
+        std::cerr << "Error: Could not open the file!" << std::endl;
+        inFile.close();
+        exit(1);
+    }
+    buffer << inFile.rdbuf();
+    fileContent = buffer.str();
+    replace(fileContent, avRef[2] , avRef[3]);
+    outFile << fileContent;
+    outFile.close();
 }
 
 int main(int ac, char **av){
-    (void)av;
-    (void)ac;
-    std::string str = "abdellah rekoune test hona\n";
-    std::string str1 = "rekoune";
-    std::string str2 = "";
     if (ac == 4){
-        std::ifstream oldFile(av[1]);
-        if (!oldFile)
+        std::ifstream inFile(av[1]);
+        if (!inFile){
             std::cerr << "Error: Could not open the file!" << std::endl;
+            exit(1);
+        }
+        readFile(av, inFile);
     }
     else
         std::cerr << "Invalid Number Of Arguments" << std::endl;
-    std::cout << str << std::endl;
 }

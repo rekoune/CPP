@@ -3,10 +3,10 @@
 
 int main (){
     Harl test;
-    test.complain("warning");
-    test.complain("info");
-    test.complain("debug");
+    test.complain("WARNING");
+    test.complain("INFO");
+    test.complain("DEBUG");
     test.complain("ERROR");
     test.complain("notfound");
-    test.complain("error");
+    test.complain("ERROR");
 }

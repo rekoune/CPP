@@ -25,14 +25,24 @@ void Harl::error ( void ){
 }
 
 void Harl::complain( std::string level ){
-    void (Harl::*functionsPtr[])() = {&Harl::debug, &Harl::info, &Harl::warning, &Harl::error};
     std::string levels[] = {"DEBUG", "INFO", "WARNING", "ERROR"};
-
-    for (int i = 0; i < 4; i++){
-        if (level == levels[i]){
-            (this->*functionsPtr[i])();
-            return;
-        }
+    int i = 0;
+    for (; i < 4; i++){
+        if (level == levels[i])
+            break;
     }
-    std::cout << "Invalid Level!\n" << std::endl;
+    switch (i){
+        case 0:
+            this->debug();
+        case 1:
+            this->info();
+        case 2:
+            this->warning();
+        case 3:
+            this->error();
+            break;
+        default:
+            std::cout << "[ Probably complaining about insignificant problems ]\n" << std::endl;
+
+    }
 }

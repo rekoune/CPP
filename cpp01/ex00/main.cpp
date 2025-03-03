@@ -1,8 +1,8 @@
 # include "Zombie.hpp"
 
 int main (){
-    Zombie* hona = newZombie("newZombie");
-    hona->announce();
+    Zombie* zombie = newZombie("newZombie");
+    zombie->announce();
     randomChump("randomChump");
-    delete hona;
+    delete zombie;
 }

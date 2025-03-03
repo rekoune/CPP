@@ -4,7 +4,7 @@ VERSION = -std=c++98
 
 SRC = main.cpp Harl.cpp
 OBJ = main.o Harl.o
-NAME = Harl
+NAME = harlFilter
 
 all : $(NAME)
 

@@ -28,6 +28,7 @@ int Fixed::getRawBits ( void ) const{
 }
 
 void    Fixed::setRawBits ( int const raw){
+    std::cout << "raw = " << raw << std::endl;
     this->numberValue = raw;
 }
 

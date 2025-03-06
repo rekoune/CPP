@@ -3,14 +3,13 @@
 
 
 int main( void ) {
-    Point A(6.0f, 6.0f);
-    Point B(8.0f, 3.0f);
-    Point C(4.0f, 3.0f);
-    Point O(6.0f, 4.0f);
+    Point A(10, 10);
+    Point B(16, 4);
+    Point C(4, 4);
+    Point O(7.1, 7);
     
-    std::cout << "in the main func Ax = " << A.getX() << std::endl;
-    bool flag =  bsp(A, B, C, O);
-    if (flag)
+    
+    if (bsp(A, B, C, O))
         std::cout << "true" << std::endl;
     else 
         std::cout << "false" << std::endl;

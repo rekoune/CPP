@@ -6,12 +6,11 @@ int main( void ) {
     Point A(10, 10);
     Point B(16, 4);
     Point C(4, 4);
-    Point O(7.1, 7);
+    Point P(10, 7);
     
-    
-    if (bsp(A, B, C, O))
-        std::cout << "true" << std::endl;
+    if (bsp(A, B, C, P))
+        std::cout << "the point is inside of the triangle" << std::endl;
     else 
-        std::cout << "false" << std::endl;
+        std::cout << "the point is outside of the triangle" << std::endl;
     return 0;
 }

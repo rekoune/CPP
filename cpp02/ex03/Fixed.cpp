@@ -14,6 +14,10 @@ Fixed::Fixed( const float floatNumber){
     numberValue = roundf(floatNumber * (1 << fractionalBits));
 }
 
+Fixed::Fixed( const int intNumber){
+    numberValue = intNumber << fractionalBits;
+}
+
 Fixed& Fixed::operator=(const Fixed& original){
     if (this != &original)
        this->numberValue = original.getRawBits();
@@ -28,13 +32,9 @@ int Fixed::getRawBits ( void ) const{
 }
 
 void    Fixed::setRawBits ( int const raw){
-    std::cout << "raw = " << raw << std::endl;
     this->numberValue = raw;
 }
 
-Fixed::Fixed( const int intNumber){
-    numberValue = intNumber << fractionalBits;
-}
 
 int Fixed::toInt( void ) const{
     return (numberValue >> fractionalBits);
@@ -123,3 +123,4 @@ const Fixed& Fixed::max (const Fixed& fixed1, const Fixed& fixed2){
         return (fixed1);
     return (fixed2);
 }
+

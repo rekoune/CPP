@@ -1,7 +1,7 @@
 # include "ClapTrap.hpp"
 
 ClapTrap::ClapTrap(){
-    std::cout << "Default Constructor Called" << std::endl;
+    std::cout << "Default Constructor of ClapTrap Called " << std::endl;
     this->name = "NULL";
     this->hitPoints = 10;
     this->energyPoints = 10;
@@ -9,7 +9,7 @@ ClapTrap::ClapTrap(){
 }
 
 ClapTrap::ClapTrap(const std::string& name){
-    std::cout << "An overloaded Constructor Called" << std::endl;
+    std::cout << "An overloaded Constructor  of ClapTrap Called " << std::endl;
     this->name = name;
     this->hitPoints = 10;
     this->energyPoints = 10;
@@ -20,7 +20,7 @@ ClapTrap::ClapTrap(const ClapTrap& original){
 }
 
 ClapTrap::~ClapTrap(){
-    std::cout << "Destructor Called" << std::endl;
+    std::cout << "Destructor  of ClapTrap Called" << std::endl;
 }
 
 ClapTrap& ClapTrap::operator=(const ClapTrap& original){

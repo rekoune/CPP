@@ -8,6 +8,7 @@ int main (){
     ShrubberyCreationForm form1("target");
     RobotomyRequestForm form2("home");
     PresidentialPardonForm form3("home");
+    
     try{
         Bureaucrat bur1("bur1", 1);
         std::cout << "=================================" << std::endl;

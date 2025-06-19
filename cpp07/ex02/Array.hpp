@@ -7,16 +7,17 @@
 template<typename T>
 class Array{
     private :
-    T*     array;
-    size_t lenght;
-    class IndexOutOfBounds;
+        T*     array;
+        size_t lenght;
+        class IndexOutOfBounds;
     public:
-    Array();
-    Array(unsigned int n);
-    Array(Array& original);
-    Array& operator=(Array& original);
-    size_t size( void ) const;
-    T& operator[](size_t index);
+        Array();
+        Array(unsigned int n);
+        Array(Array& original);
+        ~Array();
+        Array& operator=(Array& original);
+        size_t size( void ) const;
+        T& operator[](size_t index);
 };
 
 template<typename T>

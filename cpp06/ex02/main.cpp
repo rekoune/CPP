@@ -44,16 +44,17 @@ void identify(Base& p){
                             "The Real Type is a C",
                             "Uknown type"};
     int i = 3;
+    Base base;
     try{
-        dynamic_cast<A&>(p);
+        base = dynamic_cast<A&>(p);
         i = 0;
     }catch (std::exception& e){
         try{
-            dynamic_cast<B&>(p);
+            base = dynamic_cast<B&>(p);
             i = 1;
         }catch (std::exception& e){
             try{
-                dynamic_cast<C&>(p);
+                base = dynamic_cast<C&>(p);
                 i = 2;
                 }catch (std::exception& e){
                 }

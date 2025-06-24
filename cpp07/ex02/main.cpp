@@ -1,67 +1,31 @@
-// # include "Array.hpp"
+# include "Array.hpp"
 
-// void lk(void){
-//     system("leaks -q Array");
-// }
-// int main (){
-//     atexit(lk);
-//     {
-//     Array<int> arr2(750);
-//     Array<int> arr1 = arr2;
+int main (){
+    Array<std::string> stringArray(2);
+    Array<int> intArray(2);
+    Array<int> emptyArray;
 
-//     }
-// }
+    stringArray[0] = "first name";
+    stringArray[1] = "last name";
+    intArray[0] = 10;
+    intArray[1] = 20;
 
-#include <iostream>
-#include "Array.hpp"
+    std::cout << "Empty array befor = " << emptyArray << std::endl;
+    emptyArray = intArray;
+    std::cout << "Empty array after = " << emptyArray << std::endl;
+    std::cout << "String array      = " << stringArray << std::endl;
+    std::cout << "Int array         = " << intArray << std::endl;
 
-#define MAX_VAL 750
-int main(int, char**)
-{
-    Array<int> numbers(MAX_VAL);
-    int* mirror = new int[MAX_VAL];
-    srand(time(NULL));
-    for (int i = 0; i < MAX_VAL; i++)
     {
-        const int value = rand();
-        numbers[i] = value;
-        mirror[i] = value;
-    }
-    //SCOPE
-    {
-        Array<int> tmp = numbers;
-        Array<int> test(tmp);
-    }
-
-    for (int i = 0; i < MAX_VAL; i++)
-    {
-        if (mirror[i] != numbers[i])
-        {
-            std::cerr << "didn't save the same value!!" << std::endl;
-            return 1;
+        Array<std::string> copy(stringArray);
+        try{
+            std::cout << "String copy       = " << copy << std::endl;
+            copy[1] = "test";
+        }catch(std::exception& e){
+            std::cout << e.what() << std::endl;
         }
     }
-    try
-    {
-        numbers[-2] = 0;
-    }
-    catch(const std::exception& e)
-    {
-        std::cerr << e.what() << '\n';
-    }
-    try
-    {
-        numbers[MAX_VAL] = 0;
-    }
-    catch(const std::exception& e)
-    {
-        std::cerr << e.what() << '\n';
-    }
 
-    for (int i = 0; i < MAX_VAL; i++)
-    {
-        numbers[i] = rand();
-    }
-    delete [] mirror;//
-    return 0;
 }
+
+

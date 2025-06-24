@@ -2,7 +2,6 @@
 
 template<typename T>
 Array<T>::Array(){
-    std::cout << "hona default ...." << std::endl;
     this->array = NULL;
     this->lenght = 0;
 }
@@ -12,14 +11,16 @@ Array<T>::Array(unsigned int n){
     this->lenght = n;
 }
 template<typename T>
-Array<T>::Array(Array& original){
+Array<T>::Array(const Array& original){
+    this->array = NULL;
     *this = original;
 }
 template<typename T>
-Array<T>& Array<T>::operator=(Array& original){
+Array<T>& Array<T>::operator=(const Array& original){
+    if (this == &original)
+        return (*this);
     this->lenght = original.size();
-    std::cout << "hona .. hona" << std::endl;
-    delete this->array;
+    delete[] this->array;
     this->array = new T[lenght];
     for(size_t i = 0; i < lenght; i++){
         this->array[i] = original.array[i];
@@ -38,11 +39,32 @@ T& Array<T>::operator[](size_t index){
     return this->array[index];
 }
 template<typename T>
+const T& Array<T>::operator[](size_t index) const {
+    if (index > this->lenght - 1){
+        throw IndexOutOfBounds();
+    }
+    return this->array[index];
+}
+template<typename T>
 const char* Array<T>::IndexOutOfBounds::what( void ) const throw (){
     return "Index out of bounds";
 }
 
 template<typename T>
 Array<T>::~Array(){
-    delete this->array;
+    delete[] this->array;
+}
+
+
+template<typename T>
+std::ostream& operator<<(std::ostream& os, const Array<T>& array){
+    size_t i = 0;
+    os << "[" ;
+    for(; i < array.size(); i++){
+        os << array[i];
+        if (i < array.size() - 1)
+            os << ", ";
+    }
+    os << "]"; 
+    return (os);
 }

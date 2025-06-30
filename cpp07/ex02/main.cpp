@@ -20,7 +20,7 @@ int main (){
         Array<std::string> copy(stringArray);
         try{
             std::cout << "String copy       = " << copy << std::endl;
-            copy[1] = "test";
+            copy[3] = "test";
         }catch(std::exception& e){
             std::cout << e.what() << std::endl;
         }

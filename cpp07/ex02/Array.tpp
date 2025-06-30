@@ -47,7 +47,7 @@ const T& Array<T>::operator[](size_t index) const {
 }
 template<typename T>
 const char* Array<T>::IndexOutOfBounds::what( void ) const throw (){
-    return "Index out of bounds";
+    return "Exception: Index out of bounds";
 }
 
 template<typename T>

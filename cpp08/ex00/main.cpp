@@ -1,5 +1,4 @@
 # include "easyfind.hpp"
-# include <array>
 # include <vector>
 # include <list>
 # include <set>

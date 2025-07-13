@@ -32,4 +32,4 @@ std::ostream& operator<<(std::ostream& os, const Array<T>& Array);
 
 # include "Array.tpp"
 
-# endif
+# endif  

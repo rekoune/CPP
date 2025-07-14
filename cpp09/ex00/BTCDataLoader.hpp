@@ -21,7 +21,8 @@ class BTCDataLoader {
         BTCDataLoader (const BTCDataLoader& original);
         BTCDataLoader& operator=(const BTCDataLoader& original);
         ~BTCDataLoader();
-        void loadDataToMap ( void );
+        bool loadDataToMap ( void );
+        std::map<String, float> getBTCMap (void);
 };
 
 

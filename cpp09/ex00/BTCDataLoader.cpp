@@ -19,11 +19,11 @@ BTCDataLoader& BTCDataLoader::operator=( const BTCDataLoader& original){
 }
 BTCDataLoader::~BTCDataLoader(){};
 
-void BTCDataLoader::loadDataToMap( void ){
+bool BTCDataLoader::loadDataToMap( void ){
     std::ifstream dbFile(dbName);
     if (!dbFile.is_open()){
         std::cerr << "Error: could not open the database file" << std::endl;
-        return ;
+        return false;
     }
     String line;
     String date;
@@ -35,4 +35,10 @@ void BTCDataLoader::loadDataToMap( void ){
         getline(stringStream, value);
         BTCMap.insert(std::pair<String, float>(date, std::strtod(value.c_str(), NULL)));
     }
+    dbFile.close();
+    return (true);
 } 
+
+ std::map<String, float> BTCDataLoader::getBTCMap (void){
+    return (this->BTCMap);
+ }

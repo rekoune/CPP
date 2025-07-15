@@ -1,6 +1,6 @@
-SRC= main.cpp BitcoinExchange.cpp BTCDataLoader.cpp
+SRC= main.cpp RPN.cpp
 OBJ = $(SRC:.cpp=.o)
-NAME = btc
+NAME = RPN
 
 CC = c++
 FLAGS = -Wall -Wextra -Werror
@@ -10,7 +10,7 @@ all: $(NAME)
 
 $(NAME) : $(OBJ)
 	$(CC) $(FLAGS) $(STD) $(OBJ) -o $(NAME)
-%.o:%.cpp BitcoinExchange.hpp BTCDataLoader.hpp
+%.o:%.cpp RPN.hpp
 	$(CC) $(FLAGS) $(STD) -c $< -o $@
 clean:
 	rm -rf $(OBJ)

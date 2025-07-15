@@ -134,9 +134,10 @@ bool    BitcoinExchange::loadInputData (){
     while(std::getline(inputFile, line)){
         checkLine(line);
     }
+    inputFile.close();
     return (true);
 }
 
 void BitcoinExchange::printResult(void ){
-    std::cout << resultStream.str() << std::endl;
+    std::cout << resultStream.str();
 }

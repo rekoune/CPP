@@ -70,9 +70,12 @@ void    Vector::separatePairs(std::vector<std::pair<int, int> >& pairs, std::vec
 int Vector::binarySearch(int& value, std::vector<int>& container){
     int left, right, midd;
 
+    static int comp = 0;
+
     left = 0;
     right = container.size();
     while(left < right){
+        comp++;
         midd = (right + left) / 2;
         if (value < container[midd])
             right = midd;
@@ -92,27 +95,19 @@ int Vector::Jacobsthal(int N){
 std::vector<int>    Vector::getInsertionOrder(std::vector<int>& losers){
     std::vector<int> indexes;
     size_t indx;
-    int i = 3;
+    int i = 2;
     
-    if (losers.size() > 0)
-        indexes.push_back(0);
-    if (losers.size() > 1)
-        indexes.push_back(1);
-    indx = Jacobsthal(i);
-    
-    while((indx = Jacobsthal(i)) <= (losers.size() - 1)){
+    indx = Jacobsthal(i) - 1;
+    while((indx = Jacobsthal(i) - 1) <= (losers.size() - 1)){
         indexes.push_back(indx);
         i++;
     }
     return (indexes);
 }
 void    Vector::cleanLosers(std::vector<int>& losers, std::vector<int>& indexes){
-    int counter = 0 ;
 
-    for (size_t i = 0; i < indexes.size(); i++){
-        losers.erase(losers.begin() + (indexes[i] - counter));
-        counter++;
-    }
+    for (int i = (int)(indexes.size() - 1); i >= 0; i--)
+        losers.erase(losers.begin() + (indexes[i]));
 }
 
  void    Vector::insertIntoWinners(std::vector<int>& winners, std::vector<int>& losers, int& odd){
@@ -126,8 +121,8 @@ void    Vector::cleanLosers(std::vector<int>& losers, std::vector<int>& indexes)
     }
     cleanLosers(losers, insertOrder);
     for (size_t i = 0; i < losers.size(); i++){
-            index = binarySearch(losers[i], winners);
-            winners.insert(winners.begin() + index, losers[i]);
+        index = binarySearch(losers[i], winners);
+        winners.insert(winners.begin() + index, losers[i]);
     }
     if (odd != -1){
         index = binarySearch(odd, winners);
@@ -150,11 +145,34 @@ std::vector<int>    Vector::fordJohnsonSort(std::vector<int> numbers){
 }
 
 void Vector::sort(){
-    container = fordJohnsonSort(container);
+    timeval start, end;
 
-    std::vector<int>::iterator it = container.begin();
+    gettimeofday(&start, NULL);
+    container = fordJohnsonSort(container);
+    gettimeofday(&end, NULL);
+    this->sortDuration = getSortingTime(start, end);
+}
+
+double  Vector::getSortingTime(timeval start, timeval end){
+    long seconds, uSeconds;
+
+    seconds = end.tv_sec - start.tv_sec;
+    uSeconds = end.tv_usec - start.tv_usec;
+    return ((seconds * 1000000) + uSeconds);
+}
+double  Vector::getSortDuration( void){
+    return (this->sortDuration);
+}
+
+void    Vector::printResult( void ){
+    std::vector<int>::iterator it;
+
+    it = container.begin();
     while(it != container.end()){
-        std::cout << *it << ", ";
+        std::cout << *it;
+        if ((it + 1) != container.end())
+            std::cout << " ";
         it++;
     }
+    std::cout << std::endl;
 }

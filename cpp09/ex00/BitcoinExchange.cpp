@@ -95,6 +95,10 @@ void    BitcoinExchange::checkLine( String& line){
         }
         i++;
     }
+    if (i != 3){
+        resultStream << "Error: bad input => " << line << "\n";
+        return;
+    }
     if(checkDate(data[0], line)){
         if (checkValue(data[2], line))
            calculateValue();

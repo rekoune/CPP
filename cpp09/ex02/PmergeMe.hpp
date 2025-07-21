@@ -8,6 +8,7 @@
 # include <cstdlib>
 # include "Vector.hpp"
 # include "Deque.hpp"
+# include <limits>
 
 typedef std::string String;
 
@@ -26,6 +27,8 @@ class PmergeMe {
         ~PmergeMe();
         void    parseNumbers(char** numbers);
         void    sort();
+        void    printNumbersList();
+        void    displayResult( void );
 };
 
 class PmergeMe::InvalidNumberException : public std::exception{

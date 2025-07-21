@@ -4,10 +4,12 @@
 # include <vector>
 # include <list>
 # include <iostream>
+# include <sys/time.h>
 
 class Vector{
     private:
         std::vector<int> container;
+        double           sortDuration;
     public:
         Vector();
         ~Vector();
@@ -24,6 +26,10 @@ class Vector{
         int     Jacobsthal(int N);
         std::vector<int>    getInsertionOrder(std::vector<int>& losers);
         void    cleanLosers(std::vector<int>& losers, std::vector<int>& indexes);
+        double  getSortingTime(timeval start, timeval end);
+        double  getSortDuration( void ); 
+        void    printResult( void ); 
+
         
 };
 

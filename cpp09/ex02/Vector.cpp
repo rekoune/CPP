@@ -70,12 +70,10 @@ void    Vector::separatePairs(std::vector<std::pair<int, int> >& pairs, std::vec
 int Vector::binarySearch(int& value, std::vector<int>& container){
     int left, right, midd;
 
-    static int comp = 0;
 
     left = 0;
     right = container.size();
     while(left < right){
-        comp++;
         midd = (right + left) / 2;
         if (value < container[midd])
             right = midd;

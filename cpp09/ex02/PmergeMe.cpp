@@ -59,7 +59,7 @@ void    PmergeMe::displayResult( void ){
                 << vector.getSortDuration() << " us" << std::endl;
     std::cout << "Time to process a range of " 
                 << numbersList.size() 
-                << " elements with std::vector : "
+                << " elements with std::deque : "
                 << deque.getSortDuration() << " us" << std::endl;
 }
 
